@@ -15,7 +15,7 @@ const AuthLayouts = ({children}) => {
         <Header/>
         { children }
     </>
-  )
-}
+  );
+};
 
-export default AuthLayouts
+export default AuthLayouts;
