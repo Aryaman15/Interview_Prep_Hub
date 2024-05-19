@@ -7,7 +7,7 @@ async function registerUser(request, response) {
 
     const checkEmail = await UserModel.findOne({ email }); //{ name,email}  // null
 
-    if (checkEmail) {
+    if (checkEmail){
       return response.status(400).json({
         message: "Already user exits",
         error: true,
