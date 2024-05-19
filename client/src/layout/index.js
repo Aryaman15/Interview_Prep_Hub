@@ -1,19 +1,12 @@
-import React from 'react'
-import logo from '../assets/logo.png'
-import Header from '../components/Header'
-const AuthLayouts = ({children}) => {
+// src/layout/AuthLayouts.js
+import React from 'react';
+import Header from '../components/Header'; // Adjust the path if necessary
+
+const AuthLayouts = ({ children }) => {
   return (
     <>
-        {/* <header className='flex justify-center items-center py-3 h-20 shadow-md bg-white'>
-            <img 
-              src={logo}
-              alt='logo'
-              width={180}
-              height={60}
-            />
-        </header> */}
-        <Header/>
-        { children }
+      <Header />
+      {children}
     </>
   );
 };

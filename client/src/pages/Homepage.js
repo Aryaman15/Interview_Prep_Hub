@@ -1,7 +1,12 @@
 import React from 'react';
 import { Work } from '@mui/icons-material';
 import interviewImage from "../assets/Interview.png"
+import { useNavigate } from 'react-router-dom';
 const Homepage = () => {
+  const navigate = useNavigate();
+  const handleSignUpClick = () => {
+    navigate('/email');
+  };
   return (
     <>
       <div className='bg-white max-h-[90vh] h-[80vh] flex items-center justify-center overflow-x-hidden'>
@@ -9,10 +14,12 @@ const Homepage = () => {
           <h1 className='text-7xl font-bold mb-4'>Ace Your Interview</h1>
           <p className='text-lg mb-8'>Prepare and practice to land your dream job.</p>
           <div className='flex justify-center space-x-4'>
-            <button className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none'>
+          <button
+              className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none'
+              onClick={handleSignUpClick}>
               Sign Up
             </button>
-            <button className='bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none'>
+            <button className='bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 focus:outline-none' onClick={handleSignUpClick}>
               Learn More
             </button>
           </div>
