@@ -13,7 +13,7 @@ const Header = () => {
     navigate('/register');
   };
   const handleHome = () => {
-    navigate('/homepage');
+    navigate('/');
   };
 
   return (

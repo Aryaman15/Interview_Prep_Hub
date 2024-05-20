@@ -14,11 +14,10 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-        {
-            index: true,
-            path:"homepage",
-            element: <AuthLayouts><Homepage /></AuthLayouts>
-          },
+        // {
+        //     index: true,
+        //     element: <AuthLayouts><Homepage /></AuthLayouts>
+        //   },
       {
         path: 'register',
         element: <AuthLayouts><RegisterPage /></AuthLayouts>
@@ -36,7 +35,7 @@ const router = createBrowserRouter([
         element: <AuthLayouts><Forgotpassword /></AuthLayouts>
       },
       {
-        path: 'home',
+        path: '',
         element: <Home />,
         children: [
           {
