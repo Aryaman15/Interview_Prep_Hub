@@ -9,6 +9,7 @@ import { FaImage } from "react-icons/fa6";
 import { FaVideo } from "react-icons/fa6";
 import uploadFile from '../helpers/uploadFile';
 import { IoClose } from "react-icons/io5";
+import VideocamIcon from '@mui/icons-material/Videocam';
 import Loading from './Loading';
 import backgroundImage from '../assets/wallapaper.jpeg'
 import { IoMdSend } from "react-icons/io";
@@ -145,7 +146,6 @@ const MessagePage = () => {
     }
   }
 
-
   return (
     <div style={{ backgroundImage : `url(${backgroundImage})`}} className='bg-no-repeat bg-cover'>
           <header className='sticky top-0 h-16 bg-white flex justify-between items-center px-4'>
@@ -171,11 +171,21 @@ const MessagePage = () => {
                      </p>
                   </div>
               </div>
-
-              <div >
-                    <button className='cursor-pointer hover:text-primary'>
-                      <HiDotsVertical/>
+             
+              <div className='flex items-center justify-around'>
+                  <div >
+                    <a href='https://google.com'>
+                    <button  className='cursor-pointer hover:text-primary' style={{marginRight:"30px"}}>
+                    
+                      <VideocamIcon style={{ transform: 'scale(1.5)' }}/>
                     </button>
+                    </a>
+                    </div>
+                    <div style={{marginTop:"7px"}}>
+                    <button className='cursor-pointer hover:text-primary'>
+                      <HiDotsVertical style={{ transform: 'scale(1.5)' }}/>
+                    </button>
+                    </div>
               </div>
           </header>
 
