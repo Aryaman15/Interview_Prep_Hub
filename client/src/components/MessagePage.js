@@ -184,7 +184,7 @@ const MessagePage = () => {
 
         <div className="flex items-center justify-around">
           <div>
-            <a href="http://127.0.0.1:5502/lobby.html" target="blank">
+            <a href={`http://localhost:5000/${dataUser?._id}`} target="blank">
               <button
                 className="cursor-pointer hover:text-primary"
                 style={{ marginRight: "30px" }}
