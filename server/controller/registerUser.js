@@ -1,28 +1,57 @@
 const UserModel = require("../models/UserModel");
-const bcryptjs = require("bcryptjs");
+const OTP = require("../models/OTP/OTP");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const jwtSecret = process.env.JWT_SECREAT_KEY;
 
 async function registerUser(request, response) {
   try {
-    const { name, email, password, profile_pic } = request.body;
+    const { name, email, password, profile_pic, otp } = request.body;
 
-    const checkEmail = await UserModel.findOne({ email }); //{ name,email}  // null
+    // Check if all required fields are provided
+    if (!name || !email || !password || !otp) {
+      return response.status(403).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
 
-    if (checkEmail){
+    // Check if the user already exists
+    const checkEmail = await UserModel.findOne({ email });
+    if (checkEmail) {
       return response.status(400).json({
-        message: "Already user exits",
+        message: "User already exists",
         error: true,
       });
     }
 
-    //password into hashpassword
-    const salt = await bcryptjs.genSalt(10);
-    const hashpassword = await bcryptjs.hash(password, salt);
+    // Find the most recent OTP for the email
+    const recentOtp = await OTP.find({ email }).sort({ createdAt: -1 }).limit(1);
+    console.log("Recent Otp ", recentOtp);
 
+    // Validate OTP
+    if (recentOtp.length === 0) {
+      return response.status(400).json({
+        success: false,
+        message: "OTP not found",
+      });
+    } else if (otp !== recentOtp[0].otp) {
+      return response.status(400).json({
+        success: false,
+        message: "Invalid OTP",
+      });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create the new user
     const payload = {
       name,
       email,
       profile_pic,
-      password: hashpassword,
+      password: hashedPassword,
     };
 
     const user = new UserModel(payload);
@@ -33,6 +62,7 @@ async function registerUser(request, response) {
       data: userSave,
       success: true,
     });
+
   } catch (error) {
     return response.status(500).json({
       message: error.message || error,
