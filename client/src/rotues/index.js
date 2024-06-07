@@ -8,16 +8,13 @@ import MessagePage from '../components/MessagePage';
 import AuthLayouts from '../layout/index'; // Adjust the import path as necessary
 import Forgotpassword from '../pages/Forgotpassword';
 import Homepage from '../pages/Homepage';
+import VerifyEmail from '../pages/VerifyEmail';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-        // {
-        //     index: true,
-        //     element: <AuthLayouts><Homepage /></AuthLayouts>
-        //   },
       {
         path: 'register',
         element: <AuthLayouts><RegisterPage /></AuthLayouts>
@@ -33,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: 'forgot-password',
         element: <AuthLayouts><Forgotpassword /></AuthLayouts>
+      },
+      {
+        path:'/verify-email',
+        element:<AuthLayouts><VerifyEmail/></AuthLayouts>
       },
       {
         path: '',
